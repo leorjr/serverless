@@ -30,6 +30,28 @@ A seguir, são apresentados exemplos de endpoints da API e seus retornos:
 ]
 ```
 
+### Buscar um Employee por id:
+
+- **Endpoint:** `https://ssk4dqh8gi.execute-api.sa-east-1.amazonaws.com/employee/{id}`
+- **Método:** GET
+- **Parâmetros da URL:** id do employee
+- **Corpo da Requisição (JSON):**
+
+```json
+  sem corpo
+```
+
+-- **Resposta (JSON):**
+
+```json
+{
+  "id": "651466bce44acee168b9cf2a",
+  "name": "teste",
+  "age": 32,
+  "office": "office test"
+}
+```
+
 ### Criar um Employee:
 
 - **Endpoint:** `https://ssk4dqh8gi.execute-api.sa-east-1.amazonaws.com/employee`
