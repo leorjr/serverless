@@ -20,13 +20,9 @@ module.exports = class EmployeeService {
   }
 
   async update(id, name, age, office) {
-    const employeeUpdated = await this.employeeRepository.update(
-      id,
-      name,
-      age,
-      office
-    );
-    return employeeUpdated;
+    await this.employeeRepository.update(id, name, age, office);
+
+    return { id, name, age, office };
   }
 
   async delete(id) {
