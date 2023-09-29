@@ -8,11 +8,11 @@ const EmployeeSchema = new mongoose.Schema({
   },
   age: {
     type: String,
-    required: [true, "Please add a email"],
+    required: [true, "Please add a age"],
   },
   office: {
     type: String,
-    required: [true, "Please add a password"],
+    required: [true, "Please add a office"],
   },
 });
 
