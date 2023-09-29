@@ -11,7 +11,12 @@ module.exports = class EmployeeService {
 
   async retrieve(id) {
     const employee = await this.employeeRepository.retrieve(id);
-    return employee;
+
+    if (employee) {
+      return employee;
+    }
+
+    throw new Error("User not found!");
   }
 
   async create(name, age, office) {
@@ -20,6 +25,10 @@ module.exports = class EmployeeService {
   }
 
   async update(id, name, age, office) {
+    if (!name || !age || !office) {
+      throw new Error("You need to send a name, a age and a office!");
+    }
+
     await this.employeeRepository.update(id, name, age, office);
 
     return { id, name, age, office };
