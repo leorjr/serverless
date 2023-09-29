@@ -1,92 +1,135 @@
-<!--
-title: 'AWS Simple HTTP Endpoint example in NodeJS'
-description: 'This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+# SERVERLESS API
 
-# Serverless Framework Node HTTP API on AWS
+É uma aplicação que permite a execução de funções/endpoints na AWS (lambdas).
 
-This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.
+## Como Baixar e Rodar o Projeto Localmente?
 
-This template does not include any kind of persistence (database). For more advanced examples, check out the [serverless/examples repository](https://github.com/serverless/examples/) which includes Typescript, Mongo, DynamoDB and other examples.
+Siga os passos abaixo para baixar e executar o projeto em seu ambiente local:
 
-## Usage
-
-### Deployment
+1. Clone o repositório do projeto para o seu ambiente local:
 
 ```
-$ serverless deploy
+    git clone https://github.com/leorjr/serverless
 ```
 
-After deploying, you should see output similar to:
+2. Renomeie o arquivo `.env.example` para `.env` e preencha as variáveis necessárias para o funcionamento do projeto.
 
-```bash
-Deploying aws-node-http-api-project to stage dev (us-east-1)
+3. Instale as dependencias do projeto, com o comando:
 
-✔ Service deployed to stack aws-node-http-api-project-dev (152s)
-
-endpoint: GET - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/
-functions:
-  hello: aws-node-http-api-project-dev-hello (1.9 kB)
+```
+    npm i
 ```
 
-_Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [http event docs](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
+4. Rode o seguinte comando, em seu terminal:
 
-### Invocation
-
-After successful deployment, you can call the created application via HTTP:
-
-```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/
+```
+    npm run dev
 ```
 
-Which should result in response similar to the following (removed `input` content for brevity):
+Após seguir esses passos, sua aplicação estará rodando em sua máquina local, no endereço ao qual aparece em seu terminal e estará pronta para receber requisições;
+
+## ENDPOINTS
+
+A seguir, são apresentados exemplos de endpoints da API e seus retornos:
+
+### Listar todos os Employees cadastrados:
+
+- **Endpoint:** `/employee`
+- **Método:** GET
+- **Parâmetros da URL:** Nenhum
+- **Corpo da Requisição (JSON):**
+
+```json
+    sem corpo
+```
+
+-- **Resposta (JSON):**
+
+```json
+[
+  {
+    "id": "651466bce44acee168b9cf2a",
+    "name": "teste",
+    "age": 32,
+    "office": "office test"
+  }
+]
+```
+
+### Criar um Employee:
+
+- **Endpoint:** `/employee`
+- **Método:** POST
+- **Corpo da Requisição (JSON):**
 
 ```json
 {
-  "message": "Go Serverless v2.0! Your function executed successfully!",
-  "input": {
-    ...
-  }
+  "name": "teste",
+  "age": 32,
+  "office": "office test"
 }
 ```
 
-### Local development
+-- **Resposta (JSON):**
 
-You can invoke your function locally by using the following command:
-
-```bash
-serverless invoke local --function hello
-```
-
-Which should result in response similar to the following:
-
-```
+```json
 {
-  "statusCode": 200,
-  "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
+  "id": "651466bce44acee168b9cf2a",
+  "name": "teste",
+  "age": 32,
+  "office": "office test"
 }
 ```
 
+### Atualizar um Employee:
 
-Alternatively, it is also possible to emulate API Gateway and Lambda locally by using `serverless-offline` plugin. In order to do that, execute the following command:
+- **Endpoint:** `/employee/:id`
+- **Método:** PUT
+- **Parâmetros da URL:** id do employee
+- **Corpo da Requisição (JSON):**
 
-```bash
-serverless plugin install -n serverless-offline
+```json
+{
+  "name": "test atualizado",
+  "age": 32,
+  "office": "office atualizado"
+}
 ```
 
-It will add the `serverless-offline` plugin to `devDependencies` in `package.json` file as well as will add it to `plugins` in `serverless.yml`.
+-- **Resposta (JSON):**
 
-After installation, you can start local emulation with:
+```json
+{
+  "id": "651466bce44acee168b9cf2a",
+  "name": "test atualizado",
+  "age": 32,
+  "office": "office atualizado"
+}
+```
+
+### Deletar um Employee:
+
+- **Endpoint:** `/employee/:id`
+- **Método:** DELETE
+- **Parâmetros da URL:** id do employee
+- **Corpo da Requisição (JSON):**
+
+```json
+sem corpo
+```
+
+-- **Resposta (JSON):**
+
+```json
+{
+  "message": "employee ID_EMPLOYEE has been deleted"
+}
+```
+
+### Testes
+
+Para os rodar os testes que foram implementados, basta rodar o seguinte comando:
 
 ```
-serverless offline
+  npm run test
 ```
-
-To learn more about the capabilities of `serverless-offline`, please refer to its [GitHub repository](https://github.com/dherault/serverless-offline).

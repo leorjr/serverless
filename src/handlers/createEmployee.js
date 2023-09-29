@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const connectDatabase = require("../database/db");
 const Employee = require("../models/employee");
+const EmployeeService = require("../services/employee.service");
+const EmployeeRepository = require("../repository/mongo-employee.repository");
 
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
@@ -9,17 +11,14 @@ module.exports.handler = async (event, context) => {
     await connectDatabase();
     const { name, age, office } = JSON.parse(event.body);
 
-    const newEmployee = {
-      name,
-      age,
-      office,
-    };
+    const employeeRepository = new EmployeeRepository();
+    const employeeService = new EmployeeService(employeeRepository);
 
-    await Employee.create(newEmployee);
+    const employee = await employeeService.create(name, age, office);
 
     return {
       statusCode: 201,
-      body: JSON.stringify(newEmployee),
+      body: JSON.stringify(employee),
     };
   } catch (error) {
     console.log(error);

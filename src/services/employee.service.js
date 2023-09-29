@@ -1,4 +1,4 @@
-export class EmployeeService {
+module.exports = class EmployeeService {
   employeeRepository;
   constructor(employeeRepository) {
     this.employeeRepository = employeeRepository;
@@ -20,18 +20,16 @@ export class EmployeeService {
   }
 
   async update(id, name, age, office) {
-    const employeeUpdated = {
+    const employeeUpdated = await this.employeeRepository.update(
+      id,
       name,
       age,
-      office,
-      id,
-    };
-
-    await this.employeeRepository.update(id, name, age, office);
+      office
+    );
     return employeeUpdated;
   }
 
   async delete(id) {
     await this.employeeRepository.delete(id);
   }
-}
+};

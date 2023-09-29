@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const connectDatabase = require("../database/db");
 const Employee = require("../models/employee");
+const EmployeeService = require("../services/employee.service");
+const EmployeeRepository = require("../repository/mongo-employee.repository");
 
 module.exports.handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
@@ -8,7 +10,9 @@ module.exports.handler = async (event, context) => {
   try {
     await connectDatabase();
 
-    const employees = await Employee.find();
+    const employeeRepository = new EmployeeRepository();
+    const employeeService = new EmployeeService(employeeRepository);
+    const employees = await employeeService.list();
 
     return {
       statusCode: 200,
