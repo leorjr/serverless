@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
 const connectDatabase = require("../database/db");
-const Employee = require("../models/employee");
 const EmployeeService = require("../services/employee.service");
 const EmployeeRepository = require("../repository/mongo-employee.repository");
 
