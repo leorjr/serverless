@@ -2,39 +2,13 @@
 
 É uma aplicação que permite a execução de funções/endpoints na AWS (lambdas).
 
-## Como Baixar e Rodar o Projeto Localmente?
-
-Siga os passos abaixo para baixar e executar o projeto em seu ambiente local:
-
-1. Clone o repositório do projeto para o seu ambiente local:
-
-```
-    git clone https://github.com/leorjr/serverless
-```
-
-2. Renomeie o arquivo `.env.example` para `.env` e preencha as variáveis necessárias para o funcionamento do projeto.
-
-3. Instale as dependencias do projeto, com o comando:
-
-```
-    npm i
-```
-
-4. Rode o seguinte comando, em seu terminal:
-
-```
-    npm run dev
-```
-
-Após seguir esses passos, sua aplicação estará rodando em sua máquina local, no endereço ao qual aparece em seu terminal e estará pronta para receber requisições;
-
 ## ENDPOINTS
 
 A seguir, são apresentados exemplos de endpoints da API e seus retornos:
 
 ### Listar todos os Employees cadastrados:
 
-- **Endpoint:** `/employee`
+- **Endpoint:** `https://ssk4dqh8gi.execute-api.sa-east-1.amazonaws.com/employee`
 - **Método:** GET
 - **Parâmetros da URL:** Nenhum
 - **Corpo da Requisição (JSON):**
@@ -58,7 +32,7 @@ A seguir, são apresentados exemplos de endpoints da API e seus retornos:
 
 ### Criar um Employee:
 
-- **Endpoint:** `/employee`
+- **Endpoint:** `https://ssk4dqh8gi.execute-api.sa-east-1.amazonaws.com/employee`
 - **Método:** POST
 - **Corpo da Requisição (JSON):**
 
@@ -83,7 +57,7 @@ A seguir, são apresentados exemplos de endpoints da API e seus retornos:
 
 ### Atualizar um Employee:
 
-- **Endpoint:** `/employee/:id`
+- **Endpoint:** `https://ssk4dqh8gi.execute-api.sa-east-1.amazonaws.com/employee/{id}`
 - **Método:** PUT
 - **Parâmetros da URL:** id do employee
 - **Corpo da Requisição (JSON):**
@@ -109,7 +83,7 @@ A seguir, são apresentados exemplos de endpoints da API e seus retornos:
 
 ### Deletar um Employee:
 
-- **Endpoint:** `/employee/:id`
+- **Endpoint:** `https://ssk4dqh8gi.execute-api.sa-east-1.amazonaws.com/employee/{id}`
 - **Método:** DELETE
 - **Parâmetros da URL:** id do employee
 - **Corpo da Requisição (JSON):**
@@ -125,6 +99,32 @@ sem corpo
   "message": "employee ID_EMPLOYEE has been deleted"
 }
 ```
+
+## Como Baixar e Rodar o Projeto Localmente?
+
+Siga os passos abaixo para baixar e executar o projeto em seu ambiente local:
+
+1. Clone o repositório do projeto para o seu ambiente local:
+
+```
+    git clone https://github.com/leorjr/serverless
+```
+
+2. Renomeie o arquivo `.env.example` para `.env` e preencha as variáveis necessárias para o funcionamento do projeto.
+
+3. Instale as dependencias do projeto, com o comando:
+
+```
+    npm i
+```
+
+4. Rode o seguinte comando, em seu terminal:
+
+```
+    npm run dev
+```
+
+Após seguir esses passos, sua aplicação estará rodando em sua máquina local, no endereço ao qual aparece em seu terminal e estará pronta para receber requisições;
 
 ### Testes
 
