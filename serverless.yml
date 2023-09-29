@@ -1,0 +1,50 @@
+service: serverless-mongo-atlas
+frameworkVersion: "3"
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 128
+  region: sa-east-1
+  stage: ${opt:stage, 'dev'}
+  timeout: 30
+
+functions:
+  createEmployee:
+    handler: src/handlers/createEmployee.handler
+    events:
+      - httpApi:
+          path: /employee
+          method: POST
+
+  listEmployee:
+    handler: src/handlers/listEmployee.handler
+    events:
+      - httpApi:
+          path: /employee
+          method: GET
+
+  retrieveEmployee:
+    handler: src/handlers/retrieveEmployee.handler
+    events:
+      - httpApi:
+          path: /employee/{id}
+          method: GET
+
+  updateEmployee:
+    handler: src/handlers/updateEmployee.handler
+    events:
+      - httpApi:
+          path: /employee/{id}
+          method: PUT
+
+  deleteEmployee:
+    handler: src/handlers/deleteEmployee.handler
+    events:
+      - httpApi:
+          path: /employee/{id}
+          method: DELETE
