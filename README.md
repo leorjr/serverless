@@ -128,7 +128,7 @@ Após seguir esses passos, sua aplicação estará rodando em sua máquina local
 
 ### Testes
 
-Para os rodar os testes que foram implementados, basta rodar o seguinte comando:
+Para os rodar os testes que foram implementados, basta digitar o seguinte comando:
 
 ```
   npm run test
